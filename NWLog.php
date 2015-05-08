@@ -52,11 +52,7 @@
 		
 		file_put_contents($path.$file, "$time $sender: $line\n", FILE_APPEND);
 	}
-	NWWriteLog("test123");
-	function callme(){
-		NWWriteLog("test456");
-	}
-	callme();
+	
 	function NWDeleteLog($date = "today", $path = "./Logs/"){
 		
 		if ($date = "today"){
@@ -114,19 +110,5 @@
 		}
 		
 		return $logString;
-	}
-	
-	function NWDeleteBoth($date = "today"){
-		if (!NWDeleteHistory($date)){
-			return false;
-		}
-		if (!NWDeleteLog($date)){
-			return false;
-		}
-		return true;
-	}
-	
-	function cls($date = "today"){
-		return NWDeleteBoth($date);
 	}
 ?>
