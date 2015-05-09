@@ -1,4 +1,4 @@
-# NWDataBase 1.0
+# NWDataBase 1.0.1
 ## Introduction
 NWLog is a set of functions that allows you to easily log status in your script.
 ## License
@@ -13,11 +13,13 @@ require "./path/to/NWLog.php“;
 ```
 Done. No installation required.
 ## Functions
-For information about the functions of the class, please check the documentation inside the .php-file!
+For information about the functions, please check the documentation inside the .php-file!
 ### With NWDataBase you can:
 * log status
 * read log
 * delete log
 ## Changelog
+v1.0.1
+- bugfixes
 v1.0
 - initial release
