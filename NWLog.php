@@ -7,12 +7,12 @@
 		\/
 	
 		NitricWare presents
-		NWWriteLog 1.0
-		Oyster FSS CMD Edition
-		Version 1.0
+		NWWriteLog 1.0.1
 		
 		Development started
 		15. December 2012
+		Github release
+		7. May 2015
 		
 		This function is designed to create a log
 		and add lines to the created log.
@@ -26,6 +26,17 @@
 		The time (hh:mm:ss) is added too.
 	*/
 	
+	/*
+		NWWriteLog
+			Adds a line to the log. Filename is timestamp.
+		
+		$line
+			The line you want to add.
+			
+		$path
+			The path to your logs.
+	*/
+	
 	function NWWriteLog($line, $path = "./Logs/"){
 		
 		$date = strtotime(date("d-m-y", time()));
@@ -33,25 +44,41 @@
 		$time = date("h:i:s", time());
 		
 		$backtrace = debug_backtrace();
+		
+		$pathinfo = pathinfo($backtrace[0]["file"]);
+
 		if (array_key_exists(1, $backtrace)){
 			$t = $backtrace[1];
 		} else {
-			$t = array("function" => "NWWriteLog");	
+			$t = array("function" => "file");	
 		}
 		
 		if ($t["function"] == "include"){
 			$p = pathinfo($t["args"][0]);
-			$sender = $t["function"]."(".$p["basename"].":".$backtrace[0]["line"].")";
+			$sender = $t["function"]."(".$pathinfo["basename"].":".$backtrace[0]["line"].")";
 		} elseif (array_key_exists("class", $t)){
+			// Function is called from within a class
 			$p = pathinfo($backtrace[2]["args"][0]);
-			$sender = $t["class"].$t["type"].$t["function"]."() (".$p["basename"].":".$backtrace[0]["line"].")";
+			$sender = $t["class"].$t["type"].$t["function"]."() (".$pathinfo["basename"].":".$backtrace[0]["line"].")";
 		} else {
 			$p = pathinfo($backtrace[2]["args"][0]);
-			$sender = $t["function"]."() (".$p["basename"].":".$backtrace[0]["line"].")";
+			$sender = $t["function"]."() (".$pathinfo["basename"].":".$backtrace[0]["line"].")";
 		}
 		
-		file_put_contents($path.$file, "$time $sender: $line\n", FILE_APPEND);
+		file_put_contents($path.$file, "$time $sender - $line\n", FILE_APPEND);
 	}
+	
+	/*
+		NWDeleteLog
+			Deletes a log file.
+		
+		$date
+			"today": today's timestamp is used as filename
+			any int: timestamp of the file
+			
+		$path
+			The path to your logs.
+	*/
 	
 	function NWDeleteLog($date = "today", $path = "./Logs/"){
 		
@@ -73,6 +100,25 @@
 			return false;
 		}
 	}
+	
+	/*
+		NWPrintLog
+			Returns the specified lines of a log file.
+		
+		$offset
+			int: where to begin
+			
+		$maxLenghts
+			int: where to stop
+			false: til the end
+		
+		$date
+			"today": today's timestamp is used as filename
+			any int: timestamp of the file
+		
+		$path
+			The path to your logs.
+	*/
 	
 	function NWPrintLog($offset = 0, $maxLenght = false, $date = "today",$path = "./Logs/"){
 		if ($date = "today"){
