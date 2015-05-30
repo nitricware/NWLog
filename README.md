@@ -14,7 +14,7 @@ require "./path/to/NWLog.php“;
 Done. No installation required.
 ## Functions
 For information about the functions, please check the documentation inside the .php-file!
-### With NWDataBase you can:
+### With NWLog you can:
 * log status
 * read log
 * delete log
