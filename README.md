@@ -26,7 +26,9 @@ For information about the functions, please check the documentation inside the .
 v1.0.2
 - added custom backtrace
 - bugfixes
+
 v1.0.1
 - bugfixes
+
 v1.0
 - initial release
