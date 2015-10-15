@@ -53,15 +53,14 @@
 			$t = array("function" => "file");	
 		}
 		
+		print_r($t);
+		
 		if ($t["function"] == "include"){
-			$p = pathinfo($t["args"][0]);
 			$sender = $t["function"]."(".$pathinfo["basename"].":".$backtrace[0]["line"].")";
 		} elseif (array_key_exists("class", $t)){
 			// Function is called from within a class
-			$p = pathinfo($backtrace[2]["args"][0]);
 			$sender = $t["class"].$t["type"].$t["function"]."() (".$pathinfo["basename"].":".$backtrace[0]["line"].")";
 		} else {
-			$p = pathinfo($backtrace[2]["args"][0]);
 			$sender = $t["function"]."() (".$pathinfo["basename"].":".$backtrace[0]["line"].")";
 		}
 		
