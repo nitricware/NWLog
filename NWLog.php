@@ -7,7 +7,7 @@
 		\/
 	
 		NitricWare presents
-		NWWriteLog 1.0.1
+		NWWriteLog 1.0.2
 		
 		Development started
 		15. December 2012
@@ -26,6 +26,8 @@
 		The time (hh:mm:ss) is added too.
 	*/
 	
+	namespace NitricWare;
+	
 	/*
 		NWWriteLog
 			Adds a line to the log. Filename is timestamp.
@@ -33,17 +35,26 @@
 		$line
 			The line you want to add.
 			
+		$customBacktrace
+			Send your own debug_backtrace() with the function call.
+			This can be handy when you call NWWriteLog() from within
+			an error handling function.
+			
 		$path
 			The path to your logs.
 	*/
 	
-	function NWWriteLog($line, $path = "./Logs/"){
+	function NWWriteLog($line, $customBacktrace = false, $path = "./Logs/"){
 		
 		$date = strtotime(date("d-m-y", time()));
 		$file = "log_".$date.".txt";
 		$time = date("h:i:s", time());
 		
 		$backtrace = debug_backtrace();
+		
+		if ($customBacktrace){
+			$backtrace = $customBacktrace;
+		}			
 		
 		$pathinfo = pathinfo($backtrace[0]["file"]);
 
@@ -52,8 +63,6 @@
 		} else {
 			$t = array("function" => "file");	
 		}
-		
-		print_r($t);
 		
 		if ($t["function"] == "include"){
 			$sender = $t["function"]."(".$pathinfo["basename"].":".$backtrace[0]["line"].")";
@@ -156,4 +165,3 @@
 		
 		return $logString;
 	}
-?>

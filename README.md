@@ -1,4 +1,4 @@
-# NWLog 1.0.1
+# NWLog 1.0.2
 ## Introduction
 NWLog is a set of functions that allows you to easily log status in your script.
 ## License
@@ -7,9 +7,12 @@ NWLog was created by **Kurt Höblinger** as **NitricWare**.
 ## Requirements
 NWLog requires NWFileOperations (available on Github) and PHP 5.x.
 ## Usage
-In order to use NWDataBase, you just need to include the .php-file.
+In order to use NWLog, you just need to include the .php-file.
 ```php
 require "./path/to/NWLog.php“;
+use NitricWare\NWWriteLog;
+use NitricWare\NWDeleteLog;
+use NitricWare\NWPrintLog;
 ```
 Done. No installation required.
 ## Functions
@@ -20,6 +23,9 @@ For information about the functions, please check the documentation inside the .
 * delete log
 
 ## Changelog
+v1.0.2
+- added custom backtrace
+- bugfixes
 v1.0.1
 - bugfixes
 v1.0
