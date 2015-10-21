@@ -1,0 +1,23 @@
+{
+    "name": "NitricWare/NWLog",
+    "version": "1.0.2",
+    "type": "library",
+    "description": "Logging functions for any PHP script.",
+    "keywords": ["php","logging","log"],
+    "homepage": "https://github.com/nitricware/nwlog",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kurt Höblinger",
+            "email": "office@nitricware.com",
+            "homepage": "http://nitricware.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "office@nitricware.com"
+    }
+    "require": {
+        "php": ">=5.3.0"
+    }
+}
