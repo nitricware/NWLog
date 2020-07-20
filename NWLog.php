@@ -7,7 +7,7 @@
 		\/
 	
 		NitricWare presents
-		NWWriteLog 1.0.2
+		NWWriteLog 1.0.3
 		
 		Development started
 		15. December 2012
